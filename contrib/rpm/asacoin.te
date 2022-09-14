@@ -1,0 +1,81 @@
+policy_module(asacoin, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type asacoin_t;
+type asacoin_exec_t;
+init_daemon_domain(asacoin_t, asacoin_exec_t)
+
+permissive asacoin_t;
+
+type asacoin_initrc_exec_t;
+init_script_file(asacoin_initrc_exec_t)
+
+type asacoin_conf_t;
+files_type(asacoin_conf_t)
+
+type asacoin_var_lib_t;
+files_type(asacoin_var_lib_t)
+
+type asacoin_var_run_t;
+files_type(asacoin_var_run_t)
+
+type asacoin_port_t;
+corenet_port(asacoin_port_t)
+
+########################################
+#
+# asacoin local policy
+#
+allow asacoin_t self:process { fork };
+
+allow asacoin_t self:fifo_file rw_fifo_file_perms;
+allow asacoin_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(asacoin_t, asacoin_conf_t, asacoin_conf_t)
+manage_files_pattern(asacoin_t, asacoin_conf_t, asacoin_conf_t)
+
+manage_dirs_pattern(asacoin_t, asacoin_var_lib_t, asacoin_var_lib_t)
+manage_files_pattern(asacoin_t, asacoin_var_lib_t, asacoin_var_lib_t)
+files_var_lib_filetrans(asacoin_t, asacoin_var_lib_t, { dir file })
+
+manage_dirs_pattern(asacoin_t, asacoin_var_run_t, asacoin_var_run_t)
+manage_files_pattern(asacoin_t, asacoin_var_run_t, asacoin_var_run_t)
+
+sysnet_dns_name_resolve(asacoin_t)
+corenet_all_recvfrom_unlabeled(asacoin_t)
+
+allow asacoin_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(asacoin_t)
+corenet_tcp_sendrecv_generic_node(asacoin_t)
+corenet_tcp_sendrecv_all_ports(asacoin_t)
+corenet_tcp_bind_generic_node(asacoin_t)
+
+gen_require(`
+    type asacoin_port_t;
+')
+allow asacoin_t asacoin_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type asacoin_port_t;
+')
+allow asacoin_t asacoin_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(asacoin_t)
+
+files_read_etc_files(asacoin_t)
+
+miscfiles_read_localization(asacoin_t)
+
+sysnet_dns_name_resolve(asacoin_t)
+
+allow asacoin_t asacoin_exec_t:file execute_no_trans;
+allow asacoin_t self:process setsched;
+corecmd_exec_ls(asacoin_t)
+corenet_tcp_connect_http_port(asacoin_t)
+dev_read_urand(asacoin_t)
+fs_getattr_xattr_fs(asacoin_t)
+kernel_read_system_state(asacoin_t)

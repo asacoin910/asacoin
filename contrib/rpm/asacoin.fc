@@ -1,0 +1,8 @@
+/usr/bin/asacoin-cli		--	gen_context(system_u:object_r:asacoin_exec_t,s0)
+/usr/sbin/asacoind		--	gen_context(system_u:object_r:asacoin_exec_t,s0)
+/usr/lib(64)?/asacoin/asacoind		--	gen_context(system_u:object_r:asacoin_exec_t,s0)
+
+/etc/asacoin(/.*)?		gen_context(system_u:object_r:asacoin_conf_t,s0)
+/var/lib/asacoin(/.*)?		gen_context(system_u:object_r:asacoin_var_lib_t,s0)
+
+(/var)?/run/asacoind(/.*)?   gen_context(system_u:object_r:asacoin_var_run_t,s0)

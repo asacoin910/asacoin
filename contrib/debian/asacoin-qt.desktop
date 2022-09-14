@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=ASA
+Comment= ASA P2P Cryptocurrency
+Comment[fr]= ASA, monnaie virtuelle cryptographique pair à pair
+Comment[tr]= ASA, eşten eşe kriptografik sanal para birimi
+Exec=asacoin-qt %u
+Terminal=false
+Type=Application
+Icon=asacoin128
+MimeType=x-scheme-handler/asacoin;
+Categories=Office;Finance;
+StartupWMClass=ASA-qt

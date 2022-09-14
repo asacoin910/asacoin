@@ -1,0 +1,3 @@
+usr/local/bin/asacoind usr/bin
+usr/local/bin/asacoin-cli usr/bin
+debian/examples/asacoin.conf etc/asacoin
