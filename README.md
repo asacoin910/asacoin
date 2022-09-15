@@ -20,11 +20,11 @@
 </tr>
 <tr>
 <td>Maximum Supply</td>
-<td>300,000,000 ASA</td>
+<td>3,000,000,000 ASA</td>
 </tr>
 <tr>
 <td>Premine</td>
-<td>2,000,000 ASA</td>
+<td>15,000,000 ASA</td>
 </tr>
 <tr>
 <td>Minimum Stake Age</td>
