@@ -70,7 +70,9 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256S("0x000004481b5997020103a49b6ef9f5cb718519b69b53a7bf77a1dae2cb9b898c"))	
+    (0, uint256S("0x000004481b5997020103a49b6ef9f5cb718519b69b53a7bf77a1dae2cb9b898c"))
+    (500, uint256S("0x000000f88590bebeefc1cc2f50bad1513ef8ca089aea5715582123409be17d87"))	
+    (501, uint256S("0x94f3ef98ca780c08afb2ef867253eb49bb82acf4538627658d3be4b3ea29381a"))	
 ; 
 
 static const Checkpoints::CCheckpointData data = {
@@ -114,7 +116,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0xe5f32016932c75c05ffaa7129eada91bd9571d85a1f3420735f8c67e6fdf3103"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
-        consensus.powLimit   = ~UINT256_ZERO >> 10;
+        consensus.powLimit   = ~UINT256_ZERO >> 20;
         consensus.posLimitV1 = ~UINT256_ZERO >> 4;
         consensus.posLimitV2 = ~UINT256_ZERO >> 4;
         consensus.nBudgetCycleBlocks = 30 * 24 * 60;       // approx. 1 every 30 days
